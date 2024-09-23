@@ -1,0 +1,38 @@
+Main
+This database is a representation of a military organisation with ranks "Founder" > "Branch Head" > "Core Member" > "Inner Member" > "Outer Member"
+where "Founder" is the highest rank and has all the priviledges after which comes the "Branch Heads", they have the ability to remove
+or edit members from their designated "residence" base
+
+Profile
+Each member has a "power_level" based on their level which contributions to the bases overall "base power", their current missions are also
+displayed if they accepted any. 
+
+Bases
+Each "Branch Head" can add,remove or move items from their base to other bases, within bases there is an item index which holds information 
+on all the items within the bases which can be editted by "Branch Head" figures, to add a new item into the bases you need to first add it
+into the item index
+
+Missions
+there is a missions board in which each member can "accept" a mission which will show up in profile upon "accepting" the mission, and receive
+rewards on completion namely "contribution points" which is controlled by "Founder" or "Branch Head" rank figures. Missions can have limitations
+such as rank required and party limit. Missions can be removed or closed which means that members can not join or leave the mission 
+anymore "Branch Head" figures can view previously completed missions and see its party members which consists of current or former members 
+of the organisation (if they completed the mission and was then kicked)
+
+Members
+the organisations current members can be searched in the members page but only "Founder" and "Branch" head can edit member details
+
+Rankings
+In the rankings page you can see the power_level of different bases and ranks. bases, branch heads, core members, inner members and outer members
+
+Registration
+After registering the users application will show up on the applications page which "Founder" or "Branch Head" level figures can either 
+accept or reject and assign them their future "residences" and "rank"
+
+Kicking
+If a member is kicked out they will be moved into a former members database while also removing any details of them in login or missions
+that are not completed
+
+Founder priviledges
+The Founder can change permission access to pages in profile (change rank needed to access the pages)
+

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1>Applications</h1>
+
+{% if applications %}
+    <table>
+        <caption>Applications</caption>
+            <th span="col">Name</th>
+            <th span="col">Age</th>
+            <th span="col">Gender</th>
+            <th span="col">Level</th>
+            <th span="col">Application_Date</th>
+            <th span="col">Email</th>
+            <th colspan="2" span="col">Status</th>
+        {% for applicant in applications %}
+            <tr>
+                <td>{{ applicant["name"]}}</td>
+                <td>{{ applicant["age"]}}</td>
+                <td>{{ applicant["gender"]}}</td>
+                <td>{{ applicant["level"]}}</td>
+                <td>{{ applicant["application_date"]}}</td>
+                <td>{{ applicant["email"]}}</td>
+                <td><a href="{{ url_for('accept_members', user_name=applicant['name'] )}}">Accept</a></td>
+                <td><a href="{{ url_for('decline_members', user_name=applicant['name'] )}}">Decline</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    <br/>
+    <form action="" method="post" novalidate>
+        {{form.hidden_tag()}}
+
+        {{form.clear()}}
+
+    </form>
+    {% else %}
+        <p>There are currently no applicants.</p>
+    {% endif %}
+
+
+    
+{% endblock %}

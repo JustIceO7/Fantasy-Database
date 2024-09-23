@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1>Completed Missions</h1>
+<p><a href="{{ url_for('missions') }}">Back to Missions</a></p>
+{% if completed_missions %}
+
+    <table>
+        <tr>
+            <th span="col">Mission ID</th>
+            <th span="col">Name</th>
+            <th span="col">Description</th>
+            <th span="col">Rank Requirement</th>
+            <th span="col">Mission Difficulty</th>
+            <th span="col">Party Size</th>
+            <th span="col">Contribution Points</th>
+            <th span="col">Total Points</th>
+            <th span="col">Party Details</th>
+        </tr>
+        {% for mission in completed_missions %}
+        <tr>
+            <td>{{mission["mission_id"]}}</td>
+            <td>{{mission["mission_name"]}}</td>
+            <td>{{mission["mission_description"]}}</td>
+            <td>{{mission["rank_requirement"]}}</td>
+            <td>{{mission["mission_level"]}}</td>
+            <td>{{mission["current_party_number"]}}/{{mission["max_party_number"]}}</td>
+            <td>{{mission["mission_reward"]}}</td>
+            <td>{{total_contribution_points[mission["mission_id"]]}}</td>
+            <td><a href="{{url_for('completed_mission_party', mission_id=mission['mission_id'])}}">More Info</a></td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+{% endblock %}

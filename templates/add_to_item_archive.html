@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1>Add New Item Into Archive</h1>
+<p><a href="{{url_for('item_archive')}}">Back to Item Archive</a></p>
+<form action="" method="post" novalidate>
+    {{form.hidden_tag()}}
+
+    {{form.item_name.label}}
+    {{form.item_name()}}
+    {% for error in form.item_name.errors %}
+        {{error}}
+    {% endfor %}
+    <br/>
+
+    {{form.item_rarity.label}}
+    {{form.item_rarity()}}
+    <br/>
+
+    {{form.item_description.label}}
+    {{form.item_description()}}
+    {% for error in form.item_description.errors %}
+        {{error}}
+    {% endfor %}
+    <br/>
+
+    {{form.submit()}}
+<br/>
+{% endblock %}

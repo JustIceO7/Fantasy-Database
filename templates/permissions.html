@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1>Permissions</h1>
+<p><a href="{{url_for('profile')}}">Your Profile</a></p>
+{% if permissions %}
+    <table>
+        <tr>
+            <th span="col">Permission ID</th>
+            <th span="col">Permission Name</th>
+            <th span="col">Permission Rank</th>
+            <th span="col">Change</th>
+        </tr>
+        {% for permission in permissions %}
+        <tr>
+            <td>{{permission["permission_id"]}}</td>
+            <td>{{permission["permission_name"]}}</td>
+            <td>{{permission["permission_rank"]}}</td>
+            <td><a href="{{url_for('change_permission', permission_id=permission['permission_id'])}}">Info</a></td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+{% endblock %}

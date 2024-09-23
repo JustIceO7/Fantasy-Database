@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1>Add New Base</h1>
+<p><a href="{{url_for('bases')}}">Back to Bases</a></p>
+
+<form action="" method="post" novalidate>
+    {{form.hidden_tag()}}
+
+    {{form.base_name.label}}
+    {{form.base_name()}}
+    {% for error in form.base_name.errors %}
+        {{error}}
+    {% endfor %}
+    <br/>
+    {{form.base_location.label}}
+    {{form.base_location()}}
+    {% for error in form.base_location.errors %}
+        {{error}}
+    {% endfor %}
+    <br/>
+
+
+    {{form.submit()}}
+</form>
+
+{% endblock %}

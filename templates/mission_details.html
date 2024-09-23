@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1>Mission Details</h1>
+<p><a href="{{url_for('missions')}}">Back to Missions</a></p>
+{% if mission_details %}
+    <table>
+        <tr>
+            <th span="col">Mission ID</th>
+            <th span="col">Mission Name</th>
+            <th span="col">Mission Difficulty</th>
+            <th span="col">Rank Requirement</th>
+            <th span="col">Description</th>
+            <th span="col">Party Size</th>
+            <th span="col">Contribution Points</th>
+            {% if g.rank_value >= 8 %}
+            {% if mission_details["mission_status"] == "Incomplete" %}
+            <th span="col">Close</th>
+            {% endif %}
+            {% if mission_details["mission_status"] != "Complete" %}
+            {% if mission_details["mission_status"] == "Closed" and mission_details["current_party_number"] != 0 %}  
+            <th span="col">Mark Mission as Complete</th> 
+            {% endif %} 
+            <th span="col">Remove Mission</th>    
+            {% endif %}          
+            {% endif %}
+        </tr>
+        <tr>
+            <td>{{mission_details["mission_id"] }}</td>
+            <td>{{mission_details["mission_name"]}}</td>
+            <td>{{mission_details["mission_level"]}}</td>
+            <td>{{mission_details["rank_requirement"]}}</td>
+            <td>{{mission_details["mission_description"]}}</td>
+            <td>{{mission_details["current_party_number"]}}/{{mission_details["max_party_number"]}}</td>
+            <td>{{mission_details["mission_reward"]}}</td>
+            {% if g.rank_value >= 8 %}
+            {% if mission_details["mission_status"] == "Incomplete" %}
+            <td><a href="{{url_for('close_mission', mission_id = mission_details['mission_id'])}}">Close</a></td> 
+            {% endif %}      
+            {% if mission_details["mission_status"] != "Complete" %}
+            {% if mission_details["mission_status"] == "Closed" and mission_details["current_party_number"] != 0 %}  
+            <td><a href="{{url_for('mission_complete', mission_id = mission_details['mission_id'])}}">Complete</a></td>
+            {% endif %}
+            <td><a href="{{url_for('remove_mission', mission_id = mission_details['mission_id'])}}">Remove</a></td>     
+            {% endif %}
+            {% endif %}
+        </tr>
+    </table>
+    {% if mission_details["mission_status"] == "Incomplete" %}
+    <form action="" method="post" novalidate>
+        {{form.hidden_tag()}}
+        <br/>
+        {{form.submit()}}
+        {% for error in form.submit.errors %}
+            {{ error }}
+        {% endfor %}
+         
+    </form>
+    {% endif %}
+
+{% if party_members %}
+<h2>Party Members</h2>
+    <table>
+            <tr>
+                <th>Member ID</th>
+                <th>Name</th>
+                <th>Rank</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Level</th>
+                <th>Power Level</th>
+            </tr>
+        {% for member in party_members %}
+            <tr>
+                <td>{{member["member_id"]}}</td>
+                <td>{{member["name"]}}</td>
+                <td>{{member["rank"]}}</td> 
+                <td>{{member["age"]}}</td>
+                <td>{{member["gender"]}}</td> 
+                <td>{{member["level"]}}</td>
+                <td>{{member["power_level"]}}</td>               
+            </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+
+{% endif %}
+{% endblock %}

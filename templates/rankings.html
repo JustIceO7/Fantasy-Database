@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1>Rankings</h1>
+
+{% if top_10_bases %}
+    <table>
+        <caption>Top 10 Bases</caption>
+            <tr>
+                <th span="col">Rank</th>
+                <th span="col">Base</th>
+                <th span="col">Location</th>              
+                <th span="col">Base Power</th>
+            </tr>
+        {% for base in top_10_bases %}
+            <tr>
+                <th span="row">{{top_10_rankings[base]}}</th>
+                <td>{{base}}</td>
+                <td>{{top_10_bases_location[base]}}</td>
+                <td>{{top_10_bases[base]}}</td>
+            </tr>
+        {% endfor %}
+        {% endif %} 
+    </table>
+    <br/>
+
+    {% if branch_head_ranking %}
+    <table>
+        <caption>Top 10 Branch Head Ranking</caption>
+            <tr>
+                <th span="col">Rank</th>
+                <th span="col">Name</th>
+                <th span="col">Age</th>   
+                <th span="col">Gender</th>  
+                <th span="col">Residence</th>   
+                <th span="col">Level</th>            
+                <th span="col">Power Level</th>
+            </tr>
+        {% for member in branch_head_ranking %}
+            <tr>
+                <th span="row">{{branch_head_ranking.index(member)+1}}</th>
+                <td>{{member["name"]}}</td>
+                <td>{{member["age"]}}</td>
+                <td>{{member["gender"]}}</td>
+                <td>{{member["residence"]}}</td>
+                <td>{{member["level"]}}</td>
+                <td>{{member["power_level"]}}</td>
+            </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+    <br/>
+
+    {% if core_member_ranking %}
+    <table>
+        <caption>Top 100 Core Member Ranking</caption>
+            <tr>
+                <th span="col">Rank</th>
+                <th span="col">Name</th>
+                <th span="col">Age</th>   
+                <th span="col">Gender</th>  
+                <th span="col">Residence</th>   
+                <th span="col">Level</th>            
+                <th span="col">Power Level</th>
+            </tr>
+        {% for member in core_member_ranking %}
+            <tr>
+                <th span="row">{{core_member_ranking.index(member)+1}}</th>
+                <td>{{member["name"]}}</td>
+                <td>{{member["age"]}}</td>
+                <td>{{member["gender"]}}</td>
+                <td>{{member["residence"]}}</td>
+                <td>{{member["level"]}}</td>
+                <td>{{member["power_level"]}}</td>
+            </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+    <br/>
+
+    {% if inner_member_ranking %}
+    <table>
+        <caption>Top 100 Inner Member Ranking</caption>
+            <tr>
+                <th span="col">Rank</th>
+                <th span="col">Name</th>
+                <th span="col">Age</th>   
+                <th span="col">Gender</th>  
+                <th span="col">Residence</th>   
+                <th span="col">Level</th>            
+                <th span="col">Power Level</th>
+            </tr>
+        {% for member in inner_member_ranking %}
+            <tr>
+                <th span="row">{{inner_member_ranking.index(member)+1}}</th>
+                <td>{{member["name"]}}</td>
+                <td>{{member["age"]}}</td>
+                <td>{{member["gender"]}}</td>
+                <td>{{member["residence"]}}</td>
+                <td>{{member["level"]}}</td>
+                <td>{{member["power_level"]}}</td>
+            </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+    <br/>
+
+    {% if outer_member_ranking %}
+    <table>
+        <caption>Top 100 Outer Member Rank</caption>
+            <tr>
+                <th span="col">Ranking</th>
+                <th span="col">Name</th>
+                <th span="col">Age</th>   
+                <th span="col">Gender</th>  
+                <th span="col">Residence</th>   
+                <th span="col">Level</th>            
+                <th span="col">Power Level</th>
+            </tr>
+        {% for member in outer_member_ranking %}
+            <tr>
+                <th span="row">{{outer_member_ranking.index(member)+1}}</th>
+                <td>{{member["name"]}}</td>
+                <td>{{member["age"]}}</td>
+                <td>{{member["gender"]}}</td>
+                <td>{{member["residence"]}}</td>
+                <td>{{member["level"]}}</td>
+                <td>{{member["power_level"]}}</td>
+            </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1>Missions</h1>
+
+{% if g.rank_value >= 8 %}
+    <p><a href="{{url_for('missions')}}">Back to Missions</a></p>
+    <br/>
+{% endif %}
+
+<form action="" method="post" novalidate>
+    {{form.hidden_tag()}}
+
+    {{form.mission_name.label}}
+    {{form.mission_name()}}
+    {% for error in form.mission_name.errors %}
+        {{error}}
+    {% endfor %}
+    <br/>
+
+    {{form.mission_level.label}}
+    {{form.mission_level()}}
+    <br/>
+
+    {{form.rank_requirement.label}}
+    {{form.rank_requirement()}}
+    <br/>
+
+    {{form.mission_reward.label}}
+    {{form.mission_reward()}}
+    {% for error in form.mission_reward.errors %}
+        {{error}}
+    {% endfor %}
+    <br/>
+
+    {{form.mission_description.label}}
+    {{form.mission_description()}}
+    {% for error in form.mission_description.errors %}
+        {{error}}
+    {% endfor %}
+    <br/>
+
+    {{form.mission_party_limit.label}}
+    {{form.mission_party_limit()}}
+    {% for error in form.mission_party_limit.errors %}
+        {{error}}
+    {% endfor %}
+    <br/>
+
+
+    {{form.submit()}}
+</form>
+
+
+
+
+
+{% endblock %}

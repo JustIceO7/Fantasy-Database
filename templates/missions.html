@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1>Missions</h1>
+
+{% if g.rank_value >= 8 %}
+    <p><a href="{{url_for('add_mission')}}">Add Mission</a></p>
+    <p><a href="{{url_for('completed_missions')}}">Completed Missions</a></p>    
+{% endif %}
+<h2>Search Missions</h2>
+<form action="" method="post" novalidate>
+    {{form.hidden_tag()}}
+
+    {{form.mission_id.label}}
+    {{form.mission_id()}}
+
+    {{form.mission_status.label}}
+    {{form.mission_status()}}
+
+    {{form.difficulty.label}}
+    {{form.difficulty()}}
+
+    {{form.rank_requirement.label}}
+    {{form.rank_requirement()}}
+
+    {{form.submit()}}
+    <br/>
+    <br/>
+</form>
+
+{% if missions_list %}
+    {% if missions_list == 1 %}
+        <p>No Missions Found.</p>
+    
+    {% else %}
+        <table>
+            <caption>All Missions</caption>
+                <tr>
+                    <th span="col">Mission ID</th>
+                    <th span="col">Mission Name</th>
+                    <th span="col">Mission Status</th>
+                    <th span="col">Mission Difficulty</th>
+                    <th span="col">Rank Requirement</th>
+                    <th span="col">Party Size</th>
+                    <th span="col">More Details</th>
+
+                </tr>
+            {% for mission in missions_list %}
+                <tr>
+                    <td>{{ mission["mission_id"] }}</td>
+                    <td>{{ mission["mission_name"] }}</td>
+                    <td>{{ mission["mission_status"] }}</td>
+                    <td>{{ mission["mission_level"] }}</td>                 
+                    <td>{{ mission["rank_requirement"] }}</td>
+                    <td>{{ mission["current_party_number"] }}/{{ mission["max_party_number"] }}</td>
+                    <td> <a href="{{url_for('mission_details', mission_id = mission['mission_id'])}}">More Information</a> </td>
+ 
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+{% endif %}
+
+
+
+{% endblock %}

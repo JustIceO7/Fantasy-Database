@@ -1,0 +1,134 @@
+:root {
+    font-family: Arial, Helvetica, sans-serif;
+    --header-background: url(../static/images/black_steel1.jpg);
+    --header-text-color: azure;
+    --nav-background: rgb(228,0,70) radial-gradient(circle, rgba(228,0,70,1) 0%, rgba(101,28,50,1) 100%);
+    --nav-color: black;
+    --nav-hover-color: violet;
+    --body-background:rgb(255,255,255)radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(128,128,128,1) 100%);
+}
+
+body {
+    margin:0em;
+    background: var(--body-background);
+}
+
+header {
+    text-align: center;
+    background: var(--header-background);
+    padding: 2em;
+    background-size: contain;
+    color: var(--header-text-color);
+}
+
+
+#nav ul{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0px;
+    padding: 0px;
+    justify-content: center;
+    list-style: None;
+    background: var(--nav-background);
+}
+
+#nav li {
+    width:14.285%;
+}
+
+#nav li a {
+    padding: 1em 0em;
+    text-align: center;
+    text-decoration: none;
+    color:var(--nav-color);
+}
+#nav a {
+    display: block;
+}
+#nav a:hover {
+    background: var(--nav-hover-color);
+}
+
+header p {
+    font-size:0.75em;
+}
+li {
+    list-style: none;
+  }
+  
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding:0.5em;
+    text-align: center;
+    font-size: 0.95em;
+}
+
+#main_content {
+    padding:1em;
+}
+
+header p {
+    text-align: left;
+
+}
+
+h1 {
+    text-align: center;
+}
+
+th {
+    background-color: grey;
+}
+
+tr:nth-child(even) {
+    background-color: #FFD8F1;
+  }
+  
+  tr:nth-child(odd) {
+    background-color: #FF009F;
+  }
+
+a {
+    color: darkblue;
+    text-decoration: none;
+}
+
+table a {
+    color: black;
+    text-decoration: underline;
+}
+
+table a:hover {
+    color: rebeccapurple;
+}
+
+a:hover{
+    font-size: 0.975em;
+}
+
+caption{
+    font-weight:bold;
+}
+
+#pfp {
+    width:200px;
+    height:200px;
+    border-radius:50%;
+    border: 1px solid black;
+}
+
+#pfp_form {
+    padding: 0.5em;
+}
+
+#error_image {
+    display: block;
+    margin: 0em auto;
+    width: 20%;
+    border-radius: 20%;
+    border:2px solid black;
+}
+
+

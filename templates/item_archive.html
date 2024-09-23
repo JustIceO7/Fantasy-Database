@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1>Item Archive</h1>
+<a href="{{url_for('bases')}}">Back to Bases</a>
+
+<h2>Search Archive</h2>
+
+<form action="" method="post" novalidate>
+    {{form.hidden_tag()}}
+
+    {{form.item_name.label}}
+    {{form.item_name()}}
+
+    {{form.item_rarity.label}}
+    {{form.item_rarity()}}
+
+    {{form.submit()}}
+<br/>
+
+</form>
+
+{% if g.rank_value >=8 %}
+    <p><a href="{{url_for('add_to_item_archive')}}">Add new items into Archive</a></p>
+{% endif %}
+
+{% if item_archive_list %}
+    {% if item_archive_list == 0 %}
+        <p>No Items Found</p>
+    {% else %}
+        <table>
+            <tr>
+                <th span="col">Item</th>
+                <th span="col">Rarity</th>
+                <th span="col">Description</th>
+                <th span="col">Remove Item</th>
+            </tr>
+            {% for item in item_archive_list %}
+            <tr>
+                <td>{{item["item_name"]}}</td>
+                <td>{{item["rarity"]}}</td>
+                <td>{{item["item_description"]}}</td>
+                <td><a href="{{url_for('remove_item_from_item_archive', item_name=item['item_name'])}}">Remove</a></td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+            {% endif %}
+        </table>
+
+            
+{% endblock %}

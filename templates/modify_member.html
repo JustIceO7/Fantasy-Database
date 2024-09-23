@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1> Change Details</h1>
+<p><a href="{{url_for('members')}}">Back to Members</a></p>
+<img id="pfp" src="{{ url_for('static', filename= 'pfp/' + picture) }}" alt="user profile image"/>
+
+    {% if user_details %}
+        <table>
+            <tr>
+                <th span="col">Name</th>
+                <th span="col">Status</th>
+                <th span="col">Rank</th>
+                <th span="col">Age</th>
+                <th span="col">Gender</th>
+                <th span="col">Level</th>
+                <th span="col">Power Level</th>
+                <th span="col">Residence</th>
+                {% if g.user != user_details["name"] and g.rank_value > user_rank_value["rank_value"] and same_base == True or g.rank == "Founder" %}
+                {% if g.rank != "Founder" or user_details["rank"] != "Founder" %}      
+                <th span="col">Remove</th>
+                {% endif %}
+                {% endif %}
+            </tr>
+            <tr>
+                <td>{{user_details["name"]}}</td>
+                <td>{{user_details["status"]}}</td>
+                <td>{{user_details["rank"]}}</td>
+                <td>{{user_details["age"]}}</td>
+                <td>{{user_details["gender"]}}</td>
+                <td>{{user_details["level"]}}</td> 
+                <td>{{user_details["power_level"]}}</td>            
+                <td>{{user_details["residence"]}}</td>
+                {% if g.user != user_details["name"] and g.rank_value > user_rank_value["rank_value"] and same_base == True or g.rank == "Founder" %}
+                {% if g.rank != "Founder" or user_details["rank"] != "Founder" %}
+                <td><a href="{{url_for('remove_member', name = user_details['name'], same_base=same_base)}}">Remove</a></td>
+                {% endif %}
+                {% endif %}  
+            </tr>
+            {% endif %}
+        </table>
+        <br/>
+{% if g.rank == "Founder" and g.user == user_details["name"] %}
+        <p><b>Founder</b> Rank Only <b>Age</b> and <b>Residence</b> Can Be Changed</p>
+{% endif %}
+
+{% if g.rank_value > user_rank_value["rank_value"] and same_base == True or g.rank_value == 10 %}
+<form action="" method="post" novalidate>
+    {{form.hidden_tag()}}
+    
+    {{form.status.label}}
+    {{form.status()}}
+    <br/>
+    {{form.rank.label}}
+    {{form.rank()}}
+    <br/>
+    {{form.age.label}}
+    {{form.age()}}
+    {% for error in form.age.errors %}
+        {{error}}
+    {% endfor %}
+    <br/>
+    {{form.level.label}}
+    {{form.level()}}
+    {% for error in form.level.errors %}
+        {{error}}
+    {% endfor %}
+    <br/>
+    {{form.residence.label}}
+    {{form.residence()}}
+    <br/>
+    {{form.submit()}}
+</form>
+
+    {% else %}
+    <p>You do not have permission to change details.</p>
+{% endif %}  
+{% endblock %}

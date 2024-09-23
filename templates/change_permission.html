@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1>Change Permission</h1>
+<p><a href="{{url_for('permissions')}}">Back to Permissions</a></p>
+{% if permission %}
+    <table>
+        <tr>
+            <th span="col">Permission ID</th>
+            <th span="col">Permission Name</th>
+            <th span="col">Permission Rank</th>
+        </tr>
+
+        <tr>
+            <td>{{permission["permission_id"]}}</td>
+            <td>{{permission["permission_name"]}}</td>
+            <td>{{permission["permission_rank"]}}</td>
+        </tr>
+
+        {% endif %}
+    </table>
+
+    <form action="" method="post" novalidate>
+        <br/>
+        {{form.hidden_tag()}}
+    
+        {{form.new_permission_rank.label}}
+        {{form.new_permission_rank()}}
+        <br/>
+    
+    
+        {{form.submit()}}
+    </form>
+{% endblock %}

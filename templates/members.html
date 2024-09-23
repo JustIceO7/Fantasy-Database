@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1>Members</h1>
+<h2>Search Members</h2>
+<form action="" method="post" novalidate>
+    {{form.hidden_tag()}}
+
+    {{form.name.label}}
+    {{form.name()}}
+
+    {{form.status.label}}
+    {{form.status()}}
+
+    {{form.rank.label}}
+    {{form.rank()}}
+
+    {{form.gender.label}}
+    {{form.gender()}}
+
+    {{form.residence.label}}
+    {{form.residence()}}
+
+    {{form.order.label}}
+    {{form.order()}}
+
+    {{form.submit()}}
+<br/>
+<br/>
+</form>
+    {% if members %}
+    <table>
+        <caption>Members</caption>
+        <tr>
+            {% if g.rank_value >= 8 %}
+            <th span="col">Member ID</th>
+            {% endif %}                  
+            <th span="col">Name</th>
+            {% if g.rank_value >= 8 %}
+            <th span="col">Status</th>
+            {% endif %}
+            <th span="col">Rank</th>
+            <th span="col">Age</th>
+            <th span="col">Gender</th>
+            <th span="col">Level</th>
+            <th span="col">Power Level</th>
+            <th span="col">Residence</th>
+            {% if g.rank_value >= 8 %}
+            <th span="col">Contribution Points</th>
+            <th span="col">Since</th>
+            <th span="col">Recent Login</th>           
+            <th span="col">Modify</th>
+            {% endif %}
+        </tr>
+        {% for member in members %}
+            <tr>
+                {% if g.rank_value >= 8 %}
+                <td>{{member["member_id"]}}</td> 
+                {% endif %}
+                <td>{{member["name"]}}</td> 
+                {% if g.rank_value >= 8 %}
+                <td>{{member["status"]}}</td>
+                {% endif %}            
+                <td>{{member["rank"]}}</td>
+                <td>{{member["age"]}}</td>
+                <td>{{member["gender"]}}</td>
+                <td>{{member["level"]}}</td> 
+                <td>{{member["power_level"]}}</td>
+                <td>{{member["residence"]}}</td>
+                {% if g.rank_value >= 8 %}
+                <td>{{member["contribution_points"]}}</td>
+                <td>{{member["joined"]}}</td>
+                <td>{{last_login[member["name"]]}}</td>               
+                {% if g.residence == member["residence"] and member["name"] != g.user or g.rank_value == 10 %}
+                <td><a href="{{ url_for('modify_member', user_name=member['name'] )}}">Change Details</a></td>
+                {% else %}
+                <td></td>              
+                {% endif %}
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
+    {% elif members == 0 %}
+        <p>No results</p>
+    {% endif %}
+
+{% endblock %}

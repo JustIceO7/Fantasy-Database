@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1>Registration Form</h1>
+<form action="" method="post" novalidate>
+    {{form.hidden_tag()}}
+
+    {{form.user_name.label}}
+    <br/>
+    {{form.user_name()}}
+    {% for error in form.user_name.errors %}
+        {{error}}
+    {% endfor %}
+    <br/>
+    {{form.password.label}}
+    <br/>
+    {{form.password()}}
+    {% for error in form.password.errors %}
+        {{error}}
+    {% endfor %}
+    <br/>
+    {{form.password2.label}}
+    <br/>
+    {{form.password2()}}
+    {% for error in form.password2.errors %}
+        {{error}}
+    {% endfor %}
+    <br/>
+    {{form.level.label}}
+    </br>
+    {{form.level()}}
+    {% for error in form.level.errors %}
+        {{error}}
+    {% endfor %}
+    <br/>
+    {{form.email.label}}
+    <br/>
+    {{form.email()}}
+    {% for error in form.email.errors %}
+        {{error}}
+    {% endfor %}
+    <br/>
+    {{form.age.label}}
+    </br>
+    {{form.age()}}
+    {% for error in form.age.errors %}
+        {{error}}
+    {% endfor %}
+    <br/>
+    {{form.gender.label}}
+    <br/>
+    {{form.gender()}}
+    <br/>
+    {{form.submit()}}
+</form>
+{{reply}}
+{% endblock %}

@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1>{{error}}</h1>
+<img id="error_image" src="{{url_for('static', filename='images/panda_eating.jpg')}}" alt="panda eating"/>
+{% endblock %}

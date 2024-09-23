@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1>Party Details</h1>
+<p><a href="{{url_for('completed_missions')}}">Back to Completed Missions</a></p>
+{% if party_members_current %}
+<h2>Current Members</h2>
+    <table>
+            <tr>
+                <th span="col">Member ID</th>
+                <th span="col">Name</th>
+                <th span="col">Rank</th>
+                <th span="col">Age</th>
+                <th span="col">Gender</th>
+                <th span="col">Level</th>
+                <th span="col">Power Level</th>
+            </tr>
+        {% for member in party_members_current %}
+            <tr>
+                <td>{{member["member_id"]}}</td>
+                <td>{{member["name"]}}</td>
+                <td>{{member["rank"]}}</td> 
+                <td>{{member["age"]}}</td>
+                <td>{{member["gender"]}}</td> 
+                <td>{{member["level"]}}</td>
+                <td>{{member["power_level"]}}</td>               
+            </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+
+{% if party_members_former %}
+<h2>Former Members</h2>
+    <table>
+            <tr>
+                <th span="col">Member ID</th>
+                <th span="col">Name</th>
+                <th span="col">Rank</th>
+                <th span="col">Age</th>
+                <th span="col">Gender</th>
+                <th span="col">Level</th>
+                <th span="col">Power Level</th>
+            </tr>
+        {% for member in party_members_former %}
+            <tr>
+                <td>{{member["member_id"]}}</td>
+                <td>{{member["name"]}}</td>
+                <td>{{member["rank"]}}</td> 
+                <td>{{member["age"]}}</td>
+                <td>{{member["gender"]}}</td> 
+                <td>{{member["level"]}}</td>
+                <td>{{member["power_level"]}}</td>               
+            </tr>
+        {% endfor %}
+        {% endif %}
+    </table>
+
+
+
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+    <p><a href="{{url_for('bases')}}">Back to Bases</a></p>
+    <br/>
+{% if base %}
+    <table>
+        <caption> Base </caption>
+        <tr>
+            <th span="col">Name</th>
+            <th span="col">Location</th>
+        </tr>
+        <tr>
+            <td> {{ base["base_name"] }} </td>
+            <td> {{ base["location"] }} </td>
+        </tr>
+
+        {% endif %}
+    </table>
+<br/>
+{% if base_items ==  0 %}
+<p><b>{{base["base_name"]}}</b> currently has no items in the storage</p>
+{% endif %}
+{% if base_items %}
+    <table>
+        <caption>{{ base["base_name"] }} Storage</caption>
+            <tr>
+                <th span="col">Item</th>
+                <th span="col">Rarity</th>
+                <th span="col">Quantity</th>
+            </tr>
+        {% for base in base_items %}
+            <tr>
+                <td>{{base["item_name"]}}</td>
+                <td>{{base["item_rarity"]}}</td>
+                <td>{{base["quantity"]}}</td>
+            </tr>
+            {% endfor %}
+    </table>
+{% endif %}
+
+
+{% if delete == True %}
+<p><a href="{{url_for('remove_base', base_name = base['base_name'])}}">Remove Base</a></p>
+<br/>
+{% endif %}
+{% if g.residence == base["base_name"] or g.rank_value == 10%}
+<h2>Add Items</h2>
+<form action="" method="post" novalidate>
+    {{addform.hidden_tag()}}
+
+    {{addform.item_name1.label}}
+    {{addform.item_name1()}}
+    <br/>
+
+    {{addform.quantity1.label}}
+    {{addform.quantity1()}}
+    {% for error in addform.quantity1.errors %}
+        {{error}}
+    {% endfor %}
+    
+    <br/>
+    {{addform.submit1()}}
+</form>
+
+<h2>Remove Items</h2>
+<form action="" method="post" novalidate>
+    {{deleteform.hidden_tag()}}
+
+    {{deleteform.item_name2.label}}
+    {{deleteform.item_name2()}}
+    <br/>
+
+    {{deleteform.quantity2.label}}
+    {{deleteform.quantity2()}}
+    {% for error in deleteform.quantity2.errors %}
+        {{error}}
+    {% endfor %}
+    <br/>
+    
+    {{deleteform.submit2()}}
+</form>
+
+<h2>Move Items</h2>
+<form action="" method="post" novalidate>
+    {{moveform.hidden_tag()}}
+
+    {{moveform.item_name3.label}}
+    {{moveform.item_name3()}}
+    <br/>
+    {{moveform.moveTo.label}}
+    {{moveform.moveTo()}}
+    <br/>
+    {{moveform.quantity.label}}
+    {{moveform.quantity()}}
+    {% for error in moveform.quantity.errors %}
+        {{error}}
+    {% endfor %}
+    <br/>
+    {{moveform.submit()}}
+</form>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1>Applicant Details</h1>
+    <a href="{{url_for('applications')}}">Back to Application List</a>
+{% if applicant_details %}
+    <table>
+        <tr>
+            <th span="col">Name</th>
+            <th span="col">Age</th>
+            <th span="col">Gender</th>
+            <th span="col">Level</th>
+            <th span="col">Application_Date</th>
+        </tr>
+        <tr>
+            <td>{{ applicant_details["name"]}}</td>
+            <td>{{ applicant_details["age"]}}</td>
+            <td>{{ applicant_details["gender"]}}</td>
+            <td>{{ applicant_details["level"]}}</td>
+            <td>{{ applicant_details["application_date"]}}</td>
+        </tr>
+
+    </table>
+    <br/>
+    <form action="" method="post" novalidate>
+        {{form.hidden_tag()}}
+
+        {{form.rank.label}}
+        {{form.rank()}}
+        <br/>
+        {{form.residence.label}}
+        {{form.residence()}}
+        <br/>
+        {{form.submit()}}
+
+    </form>
+    {% endif %}
+{% endblock %}

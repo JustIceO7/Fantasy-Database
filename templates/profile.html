@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1>Profile</h1>
+<img id="pfp" src="{{ url_for('static', filename= 'pfp/' + picture) }}" alt="user profile image"/>
+<h2>Change Profile Picture</h2>
+<form id="pfp_form" action="" method="post" novalidate enctype="multipart/form-data">
+    {{form.hidden_tag()}}
+    
+    {{form.file()}}
+    {% for error in form.file.errors %}
+        {{error}}
+    {% endfor %}
+
+    {{form.submit()}}
+</form>
+
+{% if g.rank_value == 10 %}
+    <div id="permissions">
+     <p><a href="{{url_for('permissions')}}">Master Controls</a></p>
+    </div>
+{% endif %}
+
+{% if user_profile %}
+    <h2>Your Profile</h2>
+    <table>
+        <tr>
+            <th span="col">Name</th>
+            <th span="col">Rank</th>
+            <th span="col">Age</th>
+            <th span="col">Gender</th>
+            <th span="col">Level</th>
+            <th span="col">Power Level</th>
+            <th span="col">Residence</th>
+            <th span="col">Contribution Points</th>
+            <th span="col">Since</th>
+        </tr>
+        <tr>
+        <td>{{user_profile["name"]}}</td> 
+        <td>{{user_profile["rank"]}}</td>
+        <td>{{user_profile["age"]}}</td>
+        <td>{{user_profile["gender"]}}</td>
+        <td>{{user_profile["level"]}}</td>
+        <td>{{user_profile["power_level"]}}</td>
+        <td>{{user_profile["residence"]}}</td>
+        <td>{{user_profile["contribution_points"]}}</td>
+        <td>{{user_profile["joined"]}}</td>
+        </tr>
+        {% endif %}
+    </table>
+
+{% if user_missions %}
+    <h2> Your Missions </h2>
+    <table>
+            <tr>
+                <th span="col">Mission ID</th>
+                <th span="col">Mission Name</th>
+                <th span="col">More Details</th>
+            </tr>
+        {% for mission in user_missions %}
+            <tr>
+                <td>{{mission["mission_id"]}}</td>
+                <td>{{mission["mission_name"]}}</td>
+                <td><a href="{{url_for('mission_details', mission_id=mission['mission_id'])}}">More Information</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+    {% endif %}
+
+{% endblock %}

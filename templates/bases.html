@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+<h1>Bases</h1>
+
+{% if bases %}
+    <table>
+        <caption>Bases</caption>
+        <tr>
+            <th span="col">Base</th>
+            <th span="col">Location</th>
+            <th span="col">Base Power</th>
+            <th span="col">More Details</th>
+        </tr>
+        {% for base in bases %}
+        <tr>
+            <td>{{ base["base_name"]}}</td>
+            <td>{{ base["location"]}}</td>
+            <td>{{ base_power_levels[ base["base_name"] ]}}</td>
+            <td><a href="{{url_for('base_details', base_name = base['base_name'])}}">Check</a></td>
+        </tr>
+        {% endfor %}
+    {% endif %}
+    </table>
+<br/>
+{% if g.rank_value >= 10 %}
+<p><a href="{{url_for('add_new_base')}}">Add New Base</a></p>
+{% endif %}
+
+<h2><a href="{{url_for('item_archive')}}">Item Archive</a></h2>
+<h2>Search Base Storages</h2>
+<form action="" method="post" novalidate>
+    {{form.hidden_tag()}}
+
+    {{form.base.label}}
+    {{form.base()}}
+
+    {{form.item.label}}
+    {{form.item()}}
+
+    {{form.rarity.label}}
+    {{form.rarity()}}
+
+    {{form.submit()}}
+<br/>
+<br/>
+</form>
+{% if storage %}
+    <table>
+        <caption>Storage</caption>
+        <tr>
+            <th span="col">Base</th>
+            <th span="col">Item</th>
+            <th span="col">Rarity</th>
+            <th span="col">Quantity</th>
+        </tr>
+        {% for base in storage %}
+            <tr>
+                <td>{{ base["base_name"]}}</td>
+                <td>{{ base["item_name"]}}</td>
+                <td>{{ base["item_rarity"]}}</td>
+                <td>{{ base["quantity"]}}</td>
+            </tr>
+        {% endfor %}
+        {% elif storage == 0 %}
+            <p>No items found</p>
+        {% endif %}
+    </table>
+{% endblock %}
